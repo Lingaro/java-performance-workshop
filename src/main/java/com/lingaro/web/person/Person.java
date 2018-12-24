@@ -1,35 +1,65 @@
 package com.lingaro.web.person;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedEntityGraph(name = Person.FETCH_ADDRESS, attributeNodes = @NamedAttributeNode("address"))
 public class Person {
-    @Id
-    @GeneratedValue
-    public int id;
-    @NotEmpty
-    public String name;
-    @NotEmpty
-    public String surname;
 
-    public Person() {
+    public static final String FETCH_ADDRESS = "Person.address";
+    private int id;
+    private String name;
+    private String surname;
+    private Address address;
+
+    Person() {
     }
 
-    public Person(String name, String surname) {
+    public Person(String name, String surname, Address address) {
         this.name = name;
         this.surname = surname;
+        this.address = address;
     }
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
+        return name + " " + surname + " @ " + getAddress();
     }
+
+
+    @Id
+    @GeneratedValue
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 }

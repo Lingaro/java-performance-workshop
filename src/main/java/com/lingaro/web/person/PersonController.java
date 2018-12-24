@@ -1,31 +1,55 @@
 package com.lingaro.web.person;
 
-import com.lingaro.web.person.Person;
-import com.lingaro.web.person.PersonRepository;
-import com.lingaro.web.person.PersonService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 @RestController
 @RequestMapping("/person")
 public class PersonController {
 
     private final PersonRepository personRepository;
-    private final PersonService personService;
 
-    public PersonController(PersonRepository personRepository, PersonService personService) {
+    public PersonController(PersonRepository personRepository) {
         this.personRepository = personRepository;
-        this.personService = personService;
     }
 
-    @GetMapping()
-    public List<Person> list() {
-        return personRepository.findAll();
+    @GetMapping("v1")
+    @Transactional(readOnly = true)
+    public Set<String> list1() {
+        return personRepository
+                .findAll().stream()
+                .map(Objects::toString)
+                .collect(toSet());
     }
 
-    @PostMapping
-    public Person add(@RequestBody Person person) {
-        return personService.save(person);
+    @GetMapping("v2")
+    @Transactional(readOnly = true)
+    public Set<String> list2() {
+        return personRepository
+                .selectWithAddress()
+                .map(Objects::toString)
+                .collect(toSet());
     }
+
+    @GetMapping("v3")
+    @Transactional(readOnly = true)
+    public Set<String> list3() {
+        return personRepository
+                .findAllBy()
+                .map(Objects::toString)
+                .collect(toSet());
+    }
+
+    @GetMapping("v4")
+    public Set<String> list4() {
+        return personRepository.queryNameAtAddress();
+    }
+
 }
