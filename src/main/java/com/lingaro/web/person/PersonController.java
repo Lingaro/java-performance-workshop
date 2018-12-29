@@ -29,27 +29,4 @@ public class PersonController {
                 .collect(toSet());
     }
 
-    @GetMapping("v2")
-    @Transactional(readOnly = true)
-    public Set<String> list2() {
-        return personRepository
-                .selectWithAddress()
-                .map(Objects::toString)
-                .collect(toSet());
-    }
-
-    @GetMapping("v3")
-    @Transactional(readOnly = true)
-    public Set<String> list3() {
-        return personRepository
-                .findAllBy()
-                .map(Objects::toString)
-                .collect(toSet());
-    }
-
-    @GetMapping("v4")
-    public Set<String> list4() {
-        return personRepository.queryNameAtAddress();
-    }
-
 }

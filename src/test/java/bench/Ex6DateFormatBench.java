@@ -20,28 +20,5 @@ public class Ex6DateFormatBench extends BenchmarkTest {
         return new SimpleDateFormat(FORMAT_STRING).format(new Date());
     }
 
-    static final SimpleDateFormat simpleFormat = new SimpleDateFormat(FORMAT_STRING);
-    @Benchmark
-    public String sharedDate() {
-        synchronized (simpleFormat) {
-            return simpleFormat.format(new Date());
-        }
-    }
-
-    @Benchmark
-    public String local() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(FORMAT_STRING));
-    }
-
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_STRING);
-    @Benchmark
-    public String shared() {
-        return LocalDateTime.now().format(formatter);
-    }
-
-    static final ThreadLocal<SimpleDateFormat> threadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat(FORMAT_STRING));
-    @Benchmark
-    public String threadLocalDate() {
-        return threadLocal.get().format(new Date());
-    }
+    // TODO: 2x faster
 }

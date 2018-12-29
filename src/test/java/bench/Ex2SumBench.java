@@ -21,13 +21,6 @@ public class Ex2SumBench extends BenchmarkTest {
         return sum;
     }
 
-    @Benchmark
-    public Long sumlong() {
-        long sum = 0L;
-        for (long i = 0; i < COUNT; i++) {
-            sum += i;
-        }
-        return sum;
-    }
+    // TODO: 10x faster (single char change)
 
 }

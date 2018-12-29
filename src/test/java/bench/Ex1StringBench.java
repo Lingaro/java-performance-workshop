@@ -21,13 +21,6 @@ public class Ex1StringBench extends BenchmarkTest {
         return result;
     }
 
-    @Benchmark
-    public Object builder() {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < COUNT; i++) {
-            result.append(i);
-        }
-        return result.toString();
-    }
+    // TODO: 550x faster
 
 }
