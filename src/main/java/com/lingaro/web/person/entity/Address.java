@@ -1,4 +1,4 @@
-package com.lingaro.web.person;
+package com.lingaro.web.person.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ public class Address {
     @NotEmpty
     public String name;
 
-    public Address() {
+    Address() {
     }
 
     public Address(String name) {

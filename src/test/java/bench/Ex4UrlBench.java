@@ -1,6 +1,7 @@
 package bench;
 
-import org.junit.Test;
+import common.BenchmarkTest;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Measurement;
@@ -11,12 +12,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @BenchmarkMode(Mode.Throughput)
 @Measurement(iterations = 3, time = 1)
-public class UrlBench extends BenchmarkTest {
+public class Ex4UrlBench extends BenchmarkTest {
 
     @Benchmark
     public boolean url() throws MalformedURLException {

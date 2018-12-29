@@ -1,6 +1,6 @@
-package bench;
+package common;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -11,7 +11,7 @@ import org.openjdk.jmh.runner.options.TimeValue;
 import java.io.File;
 import java.util.regex.Pattern;
 
-abstract class BenchmarkTest {
+public abstract class BenchmarkTest {
 
     @Test
     public void run() throws RunnerException {

@@ -1,4 +1,4 @@
-package com.lingaro.web.person;
+package com.lingaro.web.person.entity;
 
 import javax.persistence.*;
 

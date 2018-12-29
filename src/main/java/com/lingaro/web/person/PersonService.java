@@ -1,5 +1,7 @@
 package com.lingaro.web.person;
 
+import com.lingaro.web.person.entity.Address;
+import com.lingaro.web.person.entity.Person;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;

@@ -1,5 +1,6 @@
 package bench;
 
+import common.BenchmarkTest;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Measurement;
@@ -9,7 +10,7 @@ import java.io.*;
 
 @BenchmarkMode(Mode.SingleShotTime)
 @Measurement(iterations = 5)
-public class BufOutputBench extends BenchmarkTest {
+public class Ex5OutputBench extends BenchmarkTest {
 
     public static final int COUNT = 1_000_000;
 
