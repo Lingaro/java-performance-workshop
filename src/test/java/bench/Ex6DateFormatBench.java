@@ -11,6 +11,7 @@ import java.util.Date;
 @BenchmarkMode(Mode.Throughput)
 @Measurement(iterations = 3, time = 3)
 @Threads(5)
+// For more see: https://daniel.mitterdorfer.name/articles/2014/benchmarking-digging-deeper/
 public class Ex6DateFormatBench extends BenchmarkTest {
 
     public static final String FORMAT_STRING = "yyyy-MM-dd'T'HH:m:ss.SSS";
